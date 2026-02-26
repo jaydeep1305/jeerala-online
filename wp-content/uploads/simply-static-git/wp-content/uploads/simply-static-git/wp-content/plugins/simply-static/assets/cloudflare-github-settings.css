@@ -196,6 +196,20 @@
     flex-wrap: wrap;
 }
 
+.ss-cg-check-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: #00a32a;
+    color: white;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: -5px;
+}
+
 .ss-cg-label {
     display: block;
     font-size: 11px;
