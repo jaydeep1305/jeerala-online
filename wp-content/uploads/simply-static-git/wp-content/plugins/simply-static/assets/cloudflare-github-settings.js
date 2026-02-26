@@ -582,8 +582,8 @@
                     completionStatus.github = true;
                     updateCompletionSummary();
                 }
-                // Pages: "GitHub push complete" means auto-deploy triggered
-                if (message.includes('Pages:') && message.includes('push complete')) {
+                // Pages: "Auto-deploy started" or "push complete" means Cloudflare Pages triggered
+                if (message.includes('Pages:') && (message.includes('Auto-deploy started') || message.includes('push complete'))) {
                     completionStatus.pages = true;
                     updateCompletionSummary();
                 }
@@ -712,6 +712,9 @@
             $('#deploy-title-text').text('Current Deployment');
             $('#deploy-time-ago').hide();
             
+            // Show thread counter during deployment
+            $('#thread-counter').addClass('active');
+            
             // Reset in database
             saveDeployStatus({ reset: true });
         }
@@ -722,6 +725,7 @@
         function markDeploymentComplete() {
             $('#deploy-title-text').text('Last Deployment');
             $('#deploy-time-ago').text('just now').show();
+            $('#thread-counter').removeClass('active');
         }
 
         /**
