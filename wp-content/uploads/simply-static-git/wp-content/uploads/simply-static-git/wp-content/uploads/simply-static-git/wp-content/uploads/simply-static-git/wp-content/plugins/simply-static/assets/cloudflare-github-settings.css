@@ -647,13 +647,41 @@
     margin-bottom: 12px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.ss-cg-completion-title-left {
+    display: flex;
+    align-items: center;
     gap: 4px;
+}
+
+.ss-cg-thread-counter {
+    font-size: 11px;
+    font-weight: 500;
+    color: #868e96;
+    text-transform: none;
+    display: none;
+}
+
+.ss-cg-thread-counter.active {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #28a745;
+}
+
+.ss-cg-thread-counter .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
 }
 
 .ss-cg-completion-items {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .ss-cg-completion-item {

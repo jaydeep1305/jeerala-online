@@ -245,8 +245,10 @@
                     $button.prop('disabled', false);
                     if (response.success) {
                         $result.addClass('success').text(response.message);
+                        $('#test-cf-pages-check').show();
                     } else {
                         $result.addClass('error').text(response.message);
+                        $('#test-cf-pages-check').hide();
                     }
                 },
                 error: function(xhr) {
@@ -256,6 +258,7 @@
                         message = xhr.responseJSON.message;
                     }
                     $result.addClass('error').text(message);
+                    $('#test-cf-pages-check').hide();
                 }
             });
         });
@@ -296,8 +299,10 @@
                     $button.prop('disabled', false);
                     if (response.success) {
                         $result.addClass('success').text(response.message);
+                        $('#connect-pages-domain-check').show();
                     } else {
                         $result.addClass('error').text(response.message);
+                        $('#connect-pages-domain-check').hide();
                     }
                 },
                 error: function(xhr) {
@@ -307,6 +312,7 @@
                         message = xhr.responseJSON.message;
                     }
                     $result.addClass('error').text(message);
+                    $('#connect-pages-domain-check').hide();
                 }
             });
         });
@@ -1226,17 +1232,30 @@
             });
         });
 
-        // Concurrent requests slider - snap to 1, 5, 10, 15, 20, 25
-        var snapValues = [1, 5, 10, 15, 20, 25];
+        // Parallel workers slider - snap to 1, 3, 5, 7, 10
+        var workerSnapValues = [1, 3, 5, 7, 10];
         $('#concurrent_requests').on('input', function() {
             $('#concurrent_requests_value').text($(this).val());
         }).on('change', function() {
             var val = parseInt($(this).val(), 10);
-            var snapped = snapValues.reduce(function(prev, curr) {
+            var snapped = workerSnapValues.reduce(function(prev, curr) {
                 return (Math.abs(curr - val) < Math.abs(prev - val) ? curr : prev);
             });
             $(this).val(snapped);
             $('#concurrent_requests_value').text(snapped);
+        });
+
+        // Batch size slider - snap to 5, 10, 20, 30, 50
+        var batchSnapValues = [5, 10, 20, 30, 50];
+        $('#worker_batch_size').on('input', function() {
+            $('#worker_batch_size_value').text($(this).val());
+        }).on('change', function() {
+            var val = parseInt($(this).val(), 10);
+            var snapped = batchSnapValues.reduce(function(prev, curr) {
+                return (Math.abs(curr - val) < Math.abs(prev - val) ? curr : prev);
+            });
+            $(this).val(snapped);
+            $('#worker_batch_size_value').text(snapped);
         });
 
         // Check if already running on page load
